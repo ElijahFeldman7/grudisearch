@@ -23,7 +23,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const openAIApiKey = process.env.OPEN_API_KEY;
+  
 
   const classroomTools = [
     ["Computer Mice", "Drawer 1"],
@@ -125,21 +125,14 @@ function App() {
     setResults([]);
 
     try {
-      const prompt = `Given the user's search for "${query}", find the most relevant items from this list of classroom tools: ${JSON.stringify(classroomTools)}. Your response must be a valid JSON array of arrays, where each inner array contains the tool name and its location. For example: [["Tool Name", "Location"]]. Do not include any text outside of the JSON response. If the object is not found, instruct the user to ask Ms. Grudi`;
-
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('/api/search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIApiKey}`
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [{
-            role: "user",
-            content: prompt
-          }],
-          temperature: 0.5
+          query,
+          classroomTools
         })
       });
 
@@ -152,7 +145,7 @@ function App() {
       const recommendedTools = JSON.parse(content);
       setResults(recommendedTools);
     } catch (error) {
-      console.error("Error fetching from OpenAI:", error);
+      console.error("Error fetching from backend:", error);
       setResults([["Error", "Sorry, there was an error. Please check the console for details."]]);
     } finally {
       setLoading(false);
