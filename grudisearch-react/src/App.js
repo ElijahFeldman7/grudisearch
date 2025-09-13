@@ -71,10 +71,10 @@ function App() {
   return (
     <div className="container">
       <WooperSpam count={50} />
-      <header>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>Grudi/Lipman Tool Finder</h1>
         <nav>
-          <a href="/edit" style={{ marginLeft: '1rem', color: 'white' }}>Edit Tools</a>
+          <a href="/edit">Edit Tools</a>
         </nav>
       </header>
       <main>

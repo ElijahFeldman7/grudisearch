@@ -74,64 +74,65 @@ function EditPage() {
 
   return (
     <div className="container">
-      <header>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>Edit Tool List</h1>
         <nav>
-          <Link to="/" style={{ marginLeft: '1rem', color: 'white' }}>Back to Search</Link>
+          <Link to="/">Back to Search</Link>
         </nav>
       </header>
       <main>
-        <div style={{ marginBottom: '1rem' }}>
+        <div className="edit-section">
           <h2>Current Tools</h2>
           {tools.length === 0 && <p>No tools found. Add some below!</p>}
           {tools.map(tool => (
-            <div key={tool.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', border: '1px solid #eee', padding: '0.5rem', borderRadius: '8px' }}>
+            <div key={tool.id} className="tool-item">
               <input
                 type="text"
                 value={tool.name}
                 onChange={(e) => handleToolChange(tool.id, 'name', e.target.value)}
-                style={{ flex: 1, marginRight: '0.5rem', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                className="edit-input"
               />
               <input
                 type="text"
                 value={tool.location}
                 onChange={(e) => handleToolChange(tool.id, 'location', e.target.value)}
-                style={{ flex: 1, marginRight: '0.5rem', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                className="edit-input"
               />
-              <button onClick={() => handleDeleteTool(tool.id)} style={{ background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>Delete</button>
+              <button onClick={() => handleDeleteTool(tool.id)} className="delete-button">Delete</button>
             </div>
           ))}
         </div>
 
-        <div style={{ marginBottom: '1rem', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
+        <div className="edit-section">
           <h2>Add New Tool</h2>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <div className="add-tool-form">
             <input
               type="text"
               placeholder="Tool Name"
               value={newToolName}
               onChange={(e) => setNewToolName(e.target.value)}
-              style={{ flex: 1, marginRight: '0.5rem', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+              className="edit-input"
             />
             <input
               type="text"
-              placeholder="Location"              value={newToolLocation}
+              placeholder="Location"
+              value={newToolLocation}
               onChange={(e) => setNewToolLocation(e.target.value)}
-              style={{ flex: 1, marginRight: '0.5rem', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+              className="edit-input"
             />
-            <button onClick={handleAddTool} style={{ background: '#28a745', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>Add Tool</button>
+            <button onClick={handleAddTool} className="add-button">Add Tool</button>
           </div>
         </div>
 
-        <div style={{ marginTop: '1rem', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
+        <div className="edit-section">
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ padding: '0.8rem', border: '1px solid #ddd', borderRadius: '8px', fontSize: '1rem', marginRight: '0.5rem' }}
+            className="edit-input"
           />
-          <button onClick={handleSave} style={{ padding: '0.8rem 1.5rem', border: 'none', background: '#007bff', color: 'white', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem', fontWeight: '600' }}>Save All Changes</button>
+          <button onClick={handleSave} className="save-button">Save All Changes</button>
         </div>
         {message && <p style={{ marginTop: '1rem', color: message.startsWith('Error') ? 'red' : 'green' }}>{message}</p>}
       </main>
