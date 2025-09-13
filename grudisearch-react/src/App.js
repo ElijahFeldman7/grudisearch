@@ -27,7 +27,7 @@ const GrudiSpam = ({ count }) => {
       position: 'fixed',
       left: `${Math.random() * 100}vw`,
       top: `${Math.random() * 100}vh`,
-      width: `${Math.random() * 100 + 50}px`,
+      width: `${Math.random() * 100 + 75}px`,
       transform: `rotate(${Math.random() * 360}deg)`,
       zIndex: -1,
     };
@@ -94,7 +94,7 @@ function App() {
 
   return (
     <div className="container">
-      {displayMode === 'wooper' ? <WooperSpam count={50} /> : <GrudiSpam count={75} />}
+      {displayMode === 'wooper' ? <WooperSpam count={50} /> : <GrudiSpam count={50} />}
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
         <h1>Grudi/Lipman Tool Finder</h1>
         <nav>
