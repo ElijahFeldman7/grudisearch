@@ -12,10 +12,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { url } = await put('tools.json', JSON.stringify(tools), { access: 'public' });
+    const { url } = await put('tools.json', JSON.stringify(tools), { access: 'public', allowOverwrite: true });
     res.status(200).json({ message: 'Tools updated successfully', url });
   } catch (error) {
-    console.error("Error updating tools:", error);
-    res.status(500).json({ message: 'Error updating tools' });
-  }
+      console.error('Error saving changes:', error);
+      return new Response(`Error saving changes: ${error.message}`, { status: 500 });
+    }
 }

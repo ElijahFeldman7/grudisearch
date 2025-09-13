@@ -1,3 +1,4 @@
+/* App.css */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     background-color: #69b1f8; 
@@ -20,6 +21,13 @@ body {
     text-align: center;
 }
 
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header h1 {
     color: #2c3e50;
     margin-bottom: 1rem;
@@ -33,6 +41,24 @@ header nav a {
 
 header nav a:hover {
     text-decoration: underline;
+}
+
+.mode-toggle-button {
+    position: absolute;
+    top: 135px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #6c757d; /* A neutral color */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.mode-toggle-button:hover {
+    background-color: #5a6268;
 }
 
 .search-wrapper {

@@ -3,6 +3,7 @@ import './App.css';
 
 const WooperSpam = ({ count }) => {
   const woopers = [];
+  const wooperImages = ['/wooper1.jpeg', '/wooper2.jpeg', '/wooper3.jpeg'];
   for (let i = 0; i < count; i++) {
     const style = {
       position: 'fixed',
@@ -12,10 +13,28 @@ const WooperSpam = ({ count }) => {
       transform: `rotate(${Math.random() * 360}deg)`,
       zIndex: -1,
     };
-        const wooperImage = '/wooper1.jpeg';
+    const wooperImage = wooperImages[Math.floor(Math.random() * wooperImages.length)];
     woopers.push(<img key={i} src={wooperImage} alt="Wooper" style={style} />);
   }
   return <>{woopers}</>;
+};
+
+const GrudiSpam = ({ count }) => {
+  const grudis = [];
+  const grudiImages = ['/grudi1.webp', '/grudi2.webp', '/grudi3.webp'];
+  for (let i = 0; i < count; i++) {
+    const style = {
+      position: 'fixed',
+      left: `${Math.random() * 100}vw`,
+      top: `${Math.random() * 100}vh`,
+      width: `${Math.random() * 100 + 50}px`,
+      transform: `rotate(${Math.random() * 360}deg)`,
+      zIndex: -1,
+    };
+    const grudiImage = grudiImages[Math.floor(Math.random() * grudiImages.length)];
+    grudis.push(<img key={i} src={grudiImage} alt="Grudi" style={style} />);
+  }
+  return <>{grudis}</>;
 };
 
 function App() {
@@ -23,6 +42,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [classroomTools, setClassroomTools] = useState([]);
+  const [displayMode, setDisplayMode] = useState('wooper'); // 'wooper' or 'grudi'
 
   useEffect(() => {
     fetch('/api/getItems')
@@ -68,14 +88,21 @@ function App() {
     }
   };
 
+  const toggleDisplayMode = () => {
+    setDisplayMode(prevMode => (prevMode === 'wooper' ? 'grudi' : 'wooper'));
+  };
+
   return (
     <div className="container">
-      <WooperSpam count={50} />
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {displayMode === 'wooper' ? <WooperSpam count={50} /> : <GrudiSpam count={75} />}
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
         <h1>Grudi/Lipman Tool Finder</h1>
         <nav>
           <a href="/edit">Edit Tools</a>
         </nav>
+        <button onClick={toggleDisplayMode} className="mode-toggle-button">
+          Switch to {displayMode === 'wooper' ? 'Grudi' : 'Wooper'} Mode
+        </button>
       </header>
       <main>
         <div className="search-wrapper">
