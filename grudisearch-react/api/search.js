@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   }
 
   const { query, classroomTools } = req.body;
-  const openAIApiKey = process.env.OPENAI_API_KEY;
+  const openAIApiKey = process.env.OPEN_API_KEY;
 
   if (!openAIApiKey) {
     return res.status(500).json({ message: 'OpenAI API key not configured' });
