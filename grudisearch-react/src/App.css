@@ -44,9 +44,7 @@ header nav a:hover {
 }
 
 .mode-toggle-button {
-    position: absolute;
-    top: 135px; /* Adjust as needed */
-    right: -10px; /* Adjust as needed */
+    margin-top: 1.5rem; /* Add some space above the button */
     padding: 0.5rem 1rem;
     border: none;
     background-color: #6c757d; /* A neutral color */
@@ -55,6 +53,9 @@ header nav a:hover {
     cursor: pointer;
     font-size: 0.9rem;
     transition: background-color 0.3s;
+    display: block; /* Make it a block element to center it */
+    margin-left: auto; /* Center the button */
+    margin-right: auto; /* Center the button */
 }
 
 .mode-toggle-button:hover {

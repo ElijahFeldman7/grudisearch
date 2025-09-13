@@ -100,9 +100,7 @@ function App() {
         <nav>
           <a href="/edit">Edit Tools</a>
         </nav>
-        <button onClick={toggleDisplayMode} className="mode-toggle-button">
-          Switch to {displayMode === 'wooper' ? 'Grudi' : 'Wooper'} Mode
-        </button>
+        
       </header>
       <main>
         <div className="search-wrapper">
@@ -127,6 +125,9 @@ function App() {
             ))}
           </ul>
         </div>
+        <button onClick={toggleDisplayMode} className="mode-toggle-button">
+          Switch to {displayMode === 'wooper' ? 'Grudi' : 'Wooper'} Mode
+        </button>
       </main>
     </div>
   );
